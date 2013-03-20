@@ -31,8 +31,45 @@ describe"Generar cheque para empleado con salario fijo" do
     empleado.con_salario_fijo(300)
     generador = Generador.new
     cheque = generador.ejecutar(empleado)
-    cheque == empleado
+    cheque.id == empleado.id
   end
+  it "generar debe emitir un cheque con nombre y apellido de empleado" do
+    empleado = Empleado.new("123456","Marco","Arispe")
+    empleado.con_salario_fijo(300)
+    generador = Generador.new
+    cheque = generador.ejecutar(empleado)
+    cheque.nombre.should == "Marco"
+    cheque.apellido.should == "Arispe"
+  end
+
+  it "generar cheque calculando un dia de trabajado para empleado fijo" do
+    empleado = Empleado.new("123456","Marco","Arispe")
+    empleado.con_salario_fijo(300)
+    generador = Generador.new
+    time = Time.new
+    fecha = (time.day.to_i-1).to_s + "/" +time.month.to_s+"/"+time.year.to_s
+    cheque = generador.ejecutarDesdeFecha(empleado,fecha)
+    cheque == 15.0
+  end
+  it "generar cheque calculando 2 semanas del mismo mes de trabajado para empleado fijo" do
+    empleado = Empleado.new("123456","Marco","Arispe")
+    empleado.con_salario_fijo(300)
+    generador = Generador.new
+    time = Time.new
+    fecha = (time.day.to_i-15).to_s + "/" +time.month.to_s+"/"+time.year.to_s
+    cheque = generador.ejecutarDesdeFecha(empleado,fecha)
+    cheque == 150.0
+  end
+  it "generar cheque de mes para el empleado fijo" do
+    empleado = Empleado.new("123456","Marco","Arispe")
+    empleado.con_salario_fijo(300)
+    generador = Generador.new
+    time = Time.new
+    fecha = time.day.to_i.to_s + "/" +time.month.to_s+"/"+time.year.to_s
+    cheque = generador.ejecutarDesdeFecha(empleado,fecha)
+    cheque == 300.0
+  end
+
   it "generar cheque en una fecha determinada" do
     empleado = Empleado.new
     empleado.con_salario_fijo(300)

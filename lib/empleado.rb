@@ -1,10 +1,13 @@
 
 class Empleado
-  attr_accessor :monto
+  attr_accessor :monto,:id,:nombre,:apellido, :fechaIngreso
   #colocar un ID para empleado
 
-    def initialize
-
+    def initialize(id="123456",nombre="",apellido="",fechaIngreso="")
+      @id = id
+      @nombre= nombre;
+      @apellido = apellido;
+      @fechaIngreso = fechaIngreso
     end
   def con_salario_fijo(salario)
     @monto = salario
