@@ -53,6 +53,6 @@ describe"Generar cheque para empleado con salario fijo" do
   it "generar cheque en una fecha determinada" do
     fecha = time.day.to_s + "/" +time.month.to_s+"/"+time.year.to_s
     cheque = generador.ejecutarEnFecha(empleado,fecha)
-    cheque.monto == 300
+    cheque.empleado.monto == 300
   end
 end

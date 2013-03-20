@@ -16,10 +16,13 @@ class Generador
 
   def ejecutarEnFecha(empleado,fecha)
     time = Time.new
+    cheque = Cheque.new
     fecha1 = time.day.to_s + "/" +time.month.to_s+"/"+time.year.to_s
     if (fecha1 == fecha)
-       @empleado = empleado
+       cheque.empleado = empleado
+       cheque
     end
+    cheque
   end
 
   def ejecutarDesdeFecha(empleado,fecha)
