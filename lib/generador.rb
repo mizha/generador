@@ -1,12 +1,18 @@
-class Generador
-  attr_accessor :empleado
+require 'cheque'
 
+class Generador
+  
   def initialize
   end
-  # ver si es mejor idea hacerlo por dia o por horas
-  def ejecutar(empleado)
-    @empleado = empleado
+  
+  def generarChequeParaEmpleado(empleado)
+    cheque = Cheque.new
+    cheque.empleado = empleado
+    cheque
   end
+  
+  # ver si es mejor idea hacerlo por dia o por horas
+
 
   def ejecutarEnFecha(empleado,fecha)
     time = Time.new
@@ -18,7 +24,10 @@ class Generador
 
   def ejecutarDesdeFecha(empleado,fecha)
     fecha = fecha.split("/")
+
       (empleado.monto / 20).to_f
+
+
 
   end
 
